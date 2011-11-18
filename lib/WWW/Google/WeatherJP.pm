@@ -9,7 +9,7 @@ use URI;
 use Encode;
 use DateTime;
 
-our $VERSION = '1.0.0';
+our $VERSION = '1.0.1';
 
 __PACKAGE__->mk_accessors(qw/mech error/);
 
@@ -30,6 +30,8 @@ sub new {
 
 sub get {
 	my ($self, $query) = @_;
+	
+	$self->{resp} = '';
 
 	my $url = URI->new('http://www.google.co.jp/search');
 	$url->query_form(q => '天気 ' . decode_utf8($query),
